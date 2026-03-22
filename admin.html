@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin</title>
+
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:#222;
+padding:20px;
+border-radius:10px;
+width:300px;
+}
+
+input,textarea,select{
+width:100%;
+margin:8px 0;
+padding:8px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:green;
+color:white;
+border:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h3>Post Mpya</h3>
+
+<input id="title" placeholder="Title">
+<input id="author" placeholder="Author">
+
+<select id="category">
+<option>kisiasa</option>
+<option>kiuchumi</option>
+<option>kijamii</option>
+<option>diplomasia</option>
+<option>sera</option>
+<option>nakala</option>
+</select>
+
+<input id="image" placeholder="Image URL">
+<textarea id="content" placeholder="Content"></textarea>
+
+<button onclick="publish()">Publish</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="firebase.js"></script>
+
+<script>
+function publish(){
+db.collection("posts").add({
+title: title.value,
+author: author.value,
+category: category.value,
+image: image.value,
+content: content.value,
+date: Date.now()
+}).then(()=>alert("Posted!"));
+}
+</script>
+
+</body>
+</html>
